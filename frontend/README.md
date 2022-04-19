@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Project1-TheMediaThatIsSocial
+ Title: RevX (Social Network App)
+ ## Table Of Contents
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- [Description](#Description)
 
-## Available Scripts
+- [Features-implemented](#Features-implemented)
 
-In the project directory, you can run:
+- [Technologies used](#Technologies-used)
 
-### `npm start`
+- [Commands to get started](#Commands-to-get-started)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [Usage of the project](#Project-usage)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Contributors](#Contributors)
 
-### `npm test`
+- [License](#License)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Description
+ 
+RevX (Social Network App) is built to connect employees of a company to other employees, whether they are associates, a trainer, or contracted employees. Each person has their own account, that comes with a unique username and employee id. Within this network, employees can interact with other users and find collections of information about major software topics. It also assists empoloyees with changes in position or location by allowing them to connect with people in the same location or position level.
+ 
+ ## Features implemented
+ 
+ Users can:
+- Create an account, login, and logout
+- View and edit their own account
+- Search for other users by name or location and view their accounts
+- View and like all posts
+- Create a post
+- Report a user or post
+- View articles sorted by topic 
 
-### `npm run build`
+Admin users can additionally:
+- View site statistics
+- View  and remove all users sorted by id, name, or role
+- View and remove all posts
+- View and address user reports
+- Create new category articles
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+ ## Technologies used 
+ 
+ - NodeJS
+ - ReactJS
+ - ExpressJS
+ - Postgresql
+ - CSS / React-Bootstrap
+ - Axios
+ 
+ 
+ ## Commands to get started
+ 
+Backend
+This project requires a PostgreSQL database with the schema listed in the db/schema.sql file.
+You may use the db/seeds.sql file to populate your database, if you wish.
+You will also need a file dbconnect.js located in the src folder with your unique PostgreSQL Pool informtaion.
+Then, navigate to backend folder
+Enter `npm install` in your command line
+Enter `node server.js` to launch the backend server
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Frontend
+Navigate to frontend/projectapp
+Enter `npm install` in your command line
+Enter `npm start`. You will be directed to your browser
+ 
+ ## Project-usage
+ - For individual use within a company
+ 
+ ## Contributors
+ - Stefan Riley
+ - Megan Orth
+ - Samuel Sholib
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+##License
+mit
