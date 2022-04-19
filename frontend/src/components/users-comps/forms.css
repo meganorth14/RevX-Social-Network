@@ -1,0 +1,84 @@
+/* Login/Registration Form */
+
+.form-dark{
+    background-color: #212529;
+    color:white;
+}
+.formheading-dark {
+    color: white;
+    text-align: center;
+    padding: 20px 5px 0 5px;
+    border-radius: 2px;
+}
+.unselectedbutton-dark {
+    width: 50%;
+    padding: 10px;
+    margin: 10px 5px 0 5px;
+    border: mediumpurple solid 2px;
+    background-color: transparent;
+    border-radius: 5px;
+    color: white;
+}
+
+.formheading {
+    color:#212529;
+    text-align: center;
+    padding: 20px 5px 0 5px;
+    border-radius: 2px;
+}
+
+.formbuttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    font-size: medium;
+}
+
+.selectedbutton {
+    background: mediumpurple;
+    width: 50%;
+    padding: 10px;
+    margin: 10px 5px 0 5px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.unselectedbutton {
+    width: 50%;
+    padding: 10px;
+    margin: 10px 5px 0 5px;
+    border: mediumpurple solid 2px;
+    background-color: transparent;
+    border-radius: 5px;
+    color: black;
+}
+
+.unselectedbutton:hover {
+    background: rgb(105, 67, 181);
+    border: rgb(105, 67, 181) solid 2px;
+    color:white;
+}
+
+.loginbtn {
+    background: mediumpurple;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.loginbtn:hover {
+    background-color: rgb(105, 67, 181);
+}
+
+.loginbtn:active {
+    border: black solid 1px;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
