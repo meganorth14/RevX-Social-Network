@@ -57,6 +57,8 @@ Admin users can additionally:
  
  ## Commands to get started
  
+- In your command line, navigate to the folder where you want to store the project and enter `git clone https://github.com/meganorth14/RevX-Social-Network.git`
+ 
 Backend
 - This project requires a PostgreSQL database with the schema listed in the db/schema.sql file.
 - You may use the db/seeds.sql file to populate your database, if you wish.
