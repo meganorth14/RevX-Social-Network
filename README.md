@@ -72,5 +72,5 @@ Enter `npm start`. You will be directed to your browser
  - Megan Orth
  - Samuel Sholib
 
-##License
+ ## License
 mit
