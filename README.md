@@ -38,16 +38,22 @@ Admin users can additionally:
 - View and address user reports
 - Create new category articles
 
+ ## Upcoming Features
+- Updated search capabilities
+- Admin user edit rights
+- Option to embed images in posts
+- Filter post feed to network of users you follow
+
 
  ## Technologies used 
  
- - NodeJS
- - ReactJS
- - ExpressJS
- - Postgresql
- - CSS / React-Bootstrap
- - Axios
- 
+ - NodeJS - Version 17.0.23
+ - ReactJS - Version 18.0.1
+ - ExpressJS - Version 4.16.1
+ - PostgreSQL - Version 8.7.3
+ - CSS / React-Bootstrap - Version 2.2.3
+ - Axios - Version 0.26.1
+
  
  ## Commands to get started
  
@@ -66,6 +72,7 @@ Frontend
  
  ## Project-usage
  - For individual use within a company
+ - Company will set admin users to monitor overall activity and release access company wide for employees to connect and interact
  
  ## Contributors
  - Stefan Riley
