@@ -1,18 +1,33 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import axios from "axios";
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import { Container, Row, Col } from 'react-bootstrap';
-import DataStore from "../../dataStore/dataStore";
 import ProfilePics from './ProfilePics';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import DataContext from "../../dataStore/dataStore";
 
 function AccountForm() {
 
-    //CALL THE DATASTORE GLOBAL VARIABLE FROM STORE
-    const { user, setUser } = useContext(DataStore);
+    const { user } = useContext(DataContext);
+    const { accountname } = useParams();
+    const [ profile, setProfile ] = useState({});
+    const [profilePic, setProfilePic] = useState("user-badge-purple.svg");
 
-    const [profilePic, setProfilePic] = useState(user.pic?user.pic:"user-badge-purple.svg");
+    useEffect(() => {
+        axios.get(`http://localhost:4000/users/userByName/${accountname}`)
+            .then((response) => {
+
+                if (response.data) {
+
+                    setProfile(response.data);
+                    if(response.data.pic){
+                        setProfilePic(response.data.pic);
+                    }
+                }
+            })
+    }, [accountname]);
+    
 
     //potential error messages when validating form
     const [errorMessages, setErrorMessages] = useState({});
@@ -24,6 +39,7 @@ function AccountForm() {
     };
 
     const navigate = useNavigate();
+    
 
     //POST AXIOS & EMAIL AND VALIDATION
     function handleSubmit(e) {
@@ -34,21 +50,21 @@ function AccountForm() {
         setErrorMessages({});
 
         const newInfo = {
-            userid: user.userid,
+            userid: profile.userid,
             pic: (profilepic.value ? profilepic.value : "user-badge-purple.svg"),
-            firstname: (first.value.trim() ? first.value : user.firstname),
-            lastname: (last.value.trim() ? last.value : user.lastname),
-            username: (username.value.trim() ? username.value : user.username),
-            password: (password.value.trim() ? password.value : user.password),
-            city: (city.value.trim() ? city.value : user.city),
-            state: (state.value.trim() ? state.value : user.state),
-            email: (email.value.trim() ? email.value : user.email),
-            account: (account.value.trim() ? account.value : user.account)
+            firstname: (first.value.trim() ? first.value : profile.firstname),
+            lastname: (last.value.trim() ? last.value : profile.lastname),
+            username: (username.value.trim() ? username.value : profile.username),
+            password: (password.value.trim() ? password.value : profile.password),
+            city: (city.value.trim() ? city.value : profile.city),
+            state: (state.value.trim() ? state.value : profile.state),
+            email: (email.value.trim() ? email.value : profile.email),
+            account: (account.value.trim() ? account.value : profile.account)
         }
 
         //if username is not ""
         if (username.value) {
-            if (username.value !== user.username) {
+            if (username.value !== profile.username) {
                 //check if username is in database
                 axios.get(`http://localhost:4000/users/userByName/${username.value}`).then((res) => {
 
@@ -59,28 +75,28 @@ function AccountForm() {
                         setErrorMessages({ name: "unameused", message: errors.unameused });
 
                     } else {
-                        axios.put(`http://localhost:4000/users/updateUser/${user.userid}`, newInfo).then((res) => {
+                        axios.put(`http://localhost:4000/users/updateUser/${profile.userid}`, newInfo).then((res) => {
 
-                            setUser(newInfo);
+                            setProfile(newInfo);
                         });
 
                     }
                 });
             } else {
-                axios.put(`http://localhost:4000/users/updateUser/${user.userid}`, newInfo).then((res) => {
+                axios.put(`http://localhost:4000/users/updateUser/${profile.userid}`, newInfo).then((res) => {
 
-                    setUser(newInfo);
+                    setProfile(newInfo);
                 });
             }
 
         } else {
-            axios.put(`http://localhost:4000/users/updateUser/${user.userid}`, newInfo).then((res) => {
+            axios.put(`http://localhost:4000/users/updateUser/${profile.userid}`, newInfo).then((res) => {
 
-                setUser(newInfo);
+                setProfile(newInfo);
             });
         }
 
-        navigate('/account');
+        navigate(`/userprofile/${accountname}`);
     }
 
     function renderErrorMessage(name) {
@@ -125,32 +141,32 @@ function AccountForm() {
                             <Card.Body>
                                 <Form.Group className="mb-2">
                                     <Form.Label>Enter first name: </Form.Label>
-                                    <Form.Control type="text" name="first" placeholder={user.firstname} />
+                                    <Form.Control type="text" name="first" placeholder={profile.firstname} />
                                     {renderErrorMessage("fullname")}
                                 </Form.Group>
                                 <Form.Group className="mb-2">
                                     <Form.Label >Enter last name: </Form.Label>
-                                    <Form.Control type="text" name="last" placeholder={user.lastname} />
+                                    <Form.Control type="text" name="last" placeholder={profile.lastname} />
                                     {renderErrorMessage("fullname")}
                                 </Form.Group>
                                 <Form.Group className="mb-2">
                                     <Form.Label >Enter username: </Form.Label>
-                                    <Form.Control type="text" name="username" placeholder={user.username} />
+                                    <Form.Control type="text" name="username" placeholder={profile.username} />
                                     {renderErrorMessage("unameused")}
                                 </Form.Group>
                                 <Form.Group className="mb-2">
                                     <Form.Label >Enter password: </Form.Label>
-                                    <Form.Control type="password" name="password" placeholder={user.password} />
+                                    <Form.Control type="password" name="password" placeholder={profile.password} />
                                     {renderErrorMessage("pass")}
                                 </Form.Group>
                                 <Form.Group className="mb-2">
                                     <Form.Label >Enter city: </Form.Label>
-                                    <Form.Control type="text" name="city" placeholder={user.city} />
+                                    <Form.Control type="text" name="city" placeholder={profile.city} />
                                 </Form.Group>
                                 <Form.Group className="mb-2">
                                     <Form.Label >Enter state: </Form.Label>
-                                    <Form.Select aria-label="Choose state" name="state" defaultValue={user.state}>
-                                        <option disabled>Select State</option>
+                                    <Form.Select aria-label="Choose state" name="state" value={profile.state} >
+                                        <option disabled hidden>Select State</option>
                                         <option value="AL">Alabama</option>
                                         <option value="AK">Alaska</option>
                                         <option value="AZ">Arizona</option>
@@ -205,16 +221,16 @@ function AccountForm() {
                                 </Form.Group>
                                 <Form.Group className="mb-2">
                                     <Form.Label >Enter email: </Form.Label>
-                                    <Form.Control type="email" name="email" placeholder={user.email} />
+                                    <Form.Control type="email" name="email" placeholder={profile.email} />
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Label >Position: </Form.Label>
-                                    <Form.Select aria-label="Choose position" name="account" defaultValue={user.account} disabled>
-                                        <option >Select position</option>
+                                    <Form.Select aria-label="Choose position" name="account" value={profile.account} >
+                                        <option disabled hidden>Select position</option>
                                         <option value="associate">Associate</option>
                                         <option value="alumni">Alumni</option>
                                         <option value="trainer">Trainer</option>
-                                        <option value="admin">Admin</option>
+                                        {user.account === 'admin' ?  <option value="admin">Admin</option> : ""}
                                     </Form.Select>
                                 </Form.Group>
                                 <Form.Group>
