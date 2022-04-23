@@ -58,11 +58,11 @@ const UserProfile = (props) => {
                             <h1>{profile.firstname} {profile.lastname}</h1>
                             <span className='account-handle'> @{profile.username}</span>
 
-                            {user.userid === profile.userid ? 
+                            {user.userid === profile.userid || user.account === 'admin' ? 
                                 <button 
                                     type="button" 
                                     className="editbtn" 
-                                    onClick={() => navigate('/editAccount')}>
+                                    onClick={() => navigate(`/editAccount/${profile.username}`)}>
                                     <RiPencilLine />
                                 </button> 
                                 : ""
